@@ -37,6 +37,10 @@ npm run dev:server
 
 # Populate database with two users
 npm run populate-db
+
+# Start the front of the project
+
+cd argenbank && npm start
 ```
 
 Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
