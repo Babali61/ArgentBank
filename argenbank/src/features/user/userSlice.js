@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { userService } from '../../services/api';
 
-const API_URL = 'http://localhost:3001/api/v1/user';
-
 export const getUserProfile = createAsyncThunk(
   'user/getProfile',
   async (_, { rejectWithValue }) => {

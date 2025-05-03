@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <main>
+    <main className="main-home">
       <div className="hero">
         <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>

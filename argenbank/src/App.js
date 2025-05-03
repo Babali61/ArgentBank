@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import NotFound from './pages/NotFound';
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('user');
@@ -30,6 +31,7 @@ function App() {
                 </PrivateRoute>
               } 
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </div>

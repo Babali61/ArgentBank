@@ -13,9 +13,12 @@ const api = axios.create({
 // Intercepteur pour ajouter le token d'authentification à chaque requête
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      if (user.token) {
+        config.headers['Authorization'] = `Bearer ${user.token}`;
+      }
     }
     return config;
   },
@@ -57,7 +60,6 @@ const authService = {
   },
   
   logout: () => {
-    localStorage.removeItem('token');
     localStorage.removeItem('user');
   }
 };
