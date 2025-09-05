@@ -15,7 +15,42 @@ const PORT = process.env.PORT || 3001
 dbConnection()
 
 // Handle CORS issues
-app.use(cors())
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Autoriser les requêtes sans origin (ex: mobile apps, Postman)
+    if (!origin) return callback(null, true);
+    
+    // Autoriser les domaines spécifiques
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'https://votre-app-netlify.netlify.app',
+      'https://*.netlify.app'
+    ];
+    
+    // Vérifier si l'origin est autorisé
+    const isAllowed = allowedOrigins.some(allowedOrigin => {
+      if (allowedOrigin.includes('*')) {
+        return origin.includes(allowedOrigin.replace('*', ''));
+      }
+      return origin === allowedOrigin;
+    });
+    
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 // Request payload middleware
 app.use(express.json())
