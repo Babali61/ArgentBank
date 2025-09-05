@@ -23,7 +23,7 @@ const corsOptions = {
     // Autoriser les domaines spécifiques
     const allowedOrigins = [
       'http://localhost:3000',
-      'https://votre-app-netlify.netlify.app',
+      'https://argentbankbabali.netlify.app',
       'https://*.netlify.app'
     ];
     
