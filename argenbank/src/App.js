@@ -15,6 +15,12 @@ const PrivateRoute = ({ children }) => {
 };
 
 function App() {
+  // Logs pour la présentation - comptes de test
+  console.log('login : tony@stark.com password : password123');
+  console.log('login : steve@rogers.com password : password456');
+
+
+
   return (
     <Provider store={store}>
       <Router>
